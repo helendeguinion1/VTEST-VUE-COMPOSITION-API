@@ -1,4 +1,4 @@
-import { ref, Ref } from 'vue'
+import { ref, Ref, onUnmounted } from 'vue'
 import { Toast, ToastType}  from '../types/Toast'
 
 export function useToast() {
@@ -7,7 +7,9 @@ export function useToast() {
   function addToast(type: ToastType, message: string, duration: number) {
     const toast: Toast = { type, message, duration };
     toasts.value.push(toast);
-    setTimeout(() => removeToast(toast), duration);
+    setTimeout(() => {
+      removeToast(toast)
+    }, duration);
   }
 
   // destroy opened toast based on the duration
@@ -20,10 +22,10 @@ export function useToast() {
   }
   // destroy all opened toast
   const removeAllToast = () => {
-    console.log('before delete', toasts.value);
     toasts.value = [];
-    console.log('after delete', toasts.value);
   }
+
+  onUnmounted(() => removeAllToast())
 
   return { toasts, addToast, removeToast, removeAllToast }
 }
