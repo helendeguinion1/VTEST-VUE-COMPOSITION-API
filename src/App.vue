@@ -44,6 +44,7 @@
 
   const toastApi = inject(toastKey);
 
+  // toast class based on type
   const toastClass = (type: ToastType): string => {
   switch (type) {
     case 'info':
@@ -65,7 +66,7 @@
   }
 
   .slide-fade-leave-active {
-    transition: all 0.5s ease-out;
+    transition: all 0.1s ease-out;
   }
 
   .slide-fade-enter-from,

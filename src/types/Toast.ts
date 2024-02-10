@@ -1,5 +1,3 @@
-// import { ToastType } from "./ToastType";
-
 export interface Toast {
   type: ToastType
   message: string
