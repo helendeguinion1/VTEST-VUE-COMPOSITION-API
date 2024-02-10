@@ -6,10 +6,4 @@ export interface Toast {
   duration: number
 }
 
-export interface ToastAPI {
-  add: () => void,
-  remove: (toast: Toast) => void,
-  removeAll: () => void
-}
-
 export type ToastType = 'info' | 'success' | 'error'
