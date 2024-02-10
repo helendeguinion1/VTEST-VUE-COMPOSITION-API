@@ -1,11 +1,19 @@
 <template>
   <div class="flex flex-col">
-     <div class="absolute h-full right-0 max-h-screen p-4 max-w-64 flex flex-col gap-4 overflow-y-auto overflow-x-hidden">
-      <div
-        v-for="(toast, i) in toastApi?.toasts.value"
-        :key="i" :class="toastClass(toast.type)">
-        {{ toast.message }}
-      </div>
+     <div
+      class="absolute h-full
+        right-0 max-h-screen
+        p-4 max-w-64 flex
+        flex-col gap-4
+        overflow-y-auto
+        overflow-x-hidden">
+      <transition-group name="slide-fade">
+        <div
+          v-for="(toast, i) in toastApi?.toasts.value"
+          :key="i" :class="toastClass(toast.type)">
+          {{ toast.message }}
+        </div>
+      </transition-group>
       </div>
     <div class="flex flex-col items-center justify-center w-screen h-screen gap-4">
       <button
@@ -50,3 +58,20 @@
 }
 
 </script>
+  
+<style scoped>
+  .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .slide-fade-leave-active {
+    transition: all 0.5s ease-out;
+  }
+
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+</style>
