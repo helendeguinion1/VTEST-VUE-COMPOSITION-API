@@ -5,20 +5,16 @@ export function useToast() {
   const toasts: Ref<Toast[]> = ref([]);
 
   function addToast(type: ToastType, message: string, duration: number) {
-    const toast: Toast = { type, message, duration };
+    const toast: Toast = { id: Date.now().toString(), type, message, duration };
     toasts.value.push(toast);
     setTimeout(() => {
-      removeToast(toast)
+      removeToast(toast.id)
     }, duration);
   }
 
   // destroy opened toast based on the duration
-  const removeToast = (toast: Toast) => {
-    // get index of the passed toast
-    const toastIndex = toasts.value.indexOf(toast);
-    if (toastIndex > -1) {
-      toasts.value.splice(toastIndex, 1)
-    }
+  const removeToast = (id: string) => {
+    toasts.value = toasts.value.filter(e => e.id != id);
   }
   // destroy all opened toast
   const removeAllToast = () => {

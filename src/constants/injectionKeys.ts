@@ -4,6 +4,6 @@ import { ToastType, Toast } from "../types/Toast";
 export const toastKey: InjectionKey<{
   toasts: Ref<Toast[]>;
   addToast: (type: ToastType, message: string, duration: number) => void;
-  removeToast: (toast: Toast) => void;
+  removeToast: (toast: string) => void;
   removeAllToast: () => void
 }> = Symbol('useToast');

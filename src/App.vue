@@ -9,8 +9,8 @@
         overflow-x-hidden">
       <transition-group name="slide-fade">
         <div
-          v-for="(toast, i) in toastApi?.toasts.value"
-          :key="i" :class="toastClass(toast.type)">
+          v-for="toast in toastApi?.toasts.value"
+          :key="toast.id" :class="toastClass(toast.type)">
           {{ toast.message }}
         </div>
       </transition-group>
@@ -66,7 +66,7 @@
   }
 
   .slide-fade-leave-active {
-    transition: all 0.1s ease-out;
+    transition: all 0.2s ease-out;
   }
 
   .slide-fade-enter-from,
