@@ -17,7 +17,7 @@ export function useToast() {
     // get index of the passed toast
     const toastIndex = toasts.value.indexOf(toast);
     if (toastIndex > -1) {
-      toasts.value.splice(toastIndex)
+      toasts.value.splice(toastIndex, 1)
     }
   }
   // destroy all opened toast
